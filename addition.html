@@ -1,0 +1,146 @@
+<!doctype.html>
+    <html>
+        <head>
+            <title>Math is Great</title>
+            <link rel = "stylesheet" href="style.css">
+        </head>
+ 
+        <body>
+ 
+            <header>
+                <nav>
+                    <h1>Addition Problems</h1>
+                    <ul>
+ 
+                        <li><a href="homepage.html">Home</a></li>
+                        <li>Addition</li>
+                        <li><a href="subtraction.html">Subtraction</a></li>
+                        <li><a href="multiplication.html">Multiplication</a></li>
+                        <li><a href="division.html">Division</a></li>
+                        <li><a href="exponents.html">Exponents</a></li>
+ 
+                    </ul>
+                </nav>
+            </header>
+            
+            <div id="page-container">
+   			<div id="content-wrap">
+ 
+            <div class="radioRight">
+                <input type="radio" name="problemType" value="calculator" style="text-align: right;width:20px;height:20px">Calculator<br>
+                <input type="radio" name="problemType" value="wordProblem" onclick = "wordProblems();" style="width:20px;height:20px">Word Problem<br>
+            </div>
+ 
+            <p>
+              Click the button to generate a problem.
+ 
+              <button onclick="myFunction();" style="width:70px;height:40px">Try it</button>
+            </p>
+            <div class = "bigproblem">
+	            <ul>
+	                <li id = "ugh"></li>
+	                <li id = "symplus" ></li>
+	                <li id = "joydeep"></li>
+	            </ul>
+            </div>
+            <p>
+              Enter answer:
+              <input type="text" id="txt1" name="text1" value=""onkeypress="checkEnter(event)" style="width:120px;height:35px">
+            </p>
+            <p>
+            <div class = "checkans">
+                <input type= "button" id = "why" value= "Check Answer" onclick = "checkAns();" style="width:120px;height:40px">
+            </div>
+            </p>
+           
+            <ul>
+                <li id = "check"></li>                
+            </ul>
+ 
+            <script>
+                var plus = "+";
+                var arrGood = ['Great job!!', 'Awesome!', 'Fantastic!', 'Super!', 'That is correct!',
+                'Good job!!', 'Excellent!'];
+                var arrBad = ['Not quite!', 'Incorrect. Try again!', "Sorry, that's incorrect."];
+                var attemptsRemaining;
+ 
+                function myFunction() {
+                      var x = Math.floor((Math.random()*10) + 1);
+                      var y = Math.floor((Math.random()*10) + 1);
+                      document.getElementById("ugh").innerHTML = +x;
+                      document.getElementById("joydeep").innerHTML = +y;
+ 
+                      attemptsRemaining = 3;
+ 
+                      document.getElementById("symplus").innerHTML = plus;
+                }
+ 
+                function wordProblems() {
+                    location = 'additionwordproblem.html';
+                }
+
+                function checkEnter(e) {
+                if(e.keyCode == 13) {
+                    checkAns();
+	                }
+	            }
+
+                function checkAns(){
+                    var ans = document.getElementById("txt1").value;
+                    var x = document.getElementById("ugh").innerHTML;
+                    var y = document.getElementById("joydeep").innerHTML;
+                    var correct = +x + +y;  
+                    if (ans == correct){
+                        if(attemptsRemaining > 0) {
+                            document.getElementById("check").innerHTML = getGood();
+                        }
+                    }
+                    else{
+                        ifWrong(correct)
+                    }
+                }
+ 
+                function getGood() {
+                    var i = Math.floor( Math.random() * arrGood.length );
+                    return arrGood[i];
+                }
+ 
+                function getBad() {
+                    var i = Math.floor( Math.random() * arrBad.length );
+                    return arrBad[i];
+                }
+ 
+                function ifWrong(answer) {
+                    attemptsRemaining--;
+ 
+                    if(attemptsRemaining > 0) {
+                        document.getElementById("check").innerHTML = getBad() + " You have " + attemptsRemaining +
+                        " attempts remaining";
+                    }
+                    else {
+                        document.getElementById("check").innerHTML = "You're out of attempts. The answer was " +
+                        answer + ". Please try another question!";
+                    }
+                }
+ 
+            </script>
+
+           
+     <!-- all other page content -->
+   			</div>
+  			 <footer id="footer">@2019 Laurence and Joydeep and Emily's site</footer>
+ 			</div>
+ 
+        </body>
+</html>
+ 
+
+
+
+
+
+
+
+
+
+

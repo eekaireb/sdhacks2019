@@ -1,0 +1,124 @@
+<!doctype.html>
+    <html>
+        <head>
+            <title>Math is Great</title>
+            <link rel = "stylesheet" href="style.css">
+        </head>
+ 
+        <body>
+ 
+            <header>
+                <nav>
+                    <h1>Exponent Problems</h1>
+                    <ul>
+ 
+                        <li><a href="homepage.html">Home</a></li>
+                        <li><a href="addition.html">Addition</a></li>
+                        <li><a href="subtraction.html">Subtraction</a></li>
+                        <li><a href="multiplication.html">Multiplication</a></li>
+                        <li><a href="division.html">Division</a></li>
+                        <li>Exponents</li>
+ 
+                    </ul>
+                </nav>
+            </header>
+
+            <div id="page-container">
+   			<div id="content-wrap">
+ 
+            <p>
+              Click the button to generate a problem.
+              <button onclick="myFunction(); formatting()" style="width:70px;height:40px">Try it</button>
+            </p>
+            <div class = "bigproblem">
+	            <ul>
+	                <li id = "ugh"></li>
+	                <sup><li id = "joydeep"></li></sup>
+	            </ul>
+            </div>
+             <p>
+          Enter answer:
+          <input type="text" id="txt1" name="text1" value=""onkeypress="checkEnter(event)" style="width:120px;height:35px">
+        </p>
+            <p>
+            <div class = "checkans">
+                <input type= "button" id = "why" value= "Check Answer" onclick = "checkAns();" style="width:120px;height:40px">
+            </div>
+            </p>
+            <ul>
+                <li id = "check"></li>                
+            </ul>
+ 
+            <script>
+                var x;
+                var y;
+                var arrGood = ['Great job!!', 'Awesome!', 'Fantastic!', 'Super!', 'That is correct!',
+                'Good job!!', 'Excellent!'];
+                var arrBad = ['Not quite!', 'Incorrect. Try again!', "Sorry, that's incorrect."];
+                var attemptsRemaining;
+ 
+                function myFunction() {
+                      x = Math.floor(Math.random()*10);
+                      y = Math.floor(Math.random()*4 + 1);
+                      document.getElementById("ugh").innerHTML = +x;
+                      document.getElementById("joydeep").innerHTML = +y;
+ 
+                      attemptsRemaining = 3;
+                }
+ 
+                function formatting() {
+                    document.write("<p>" + x + y.sup());
+                }
+ 
+                function checkAns(){
+                    var ans = document.getElementById("txt1").value;
+                    var x = document.getElementById("ugh").innerHTML;
+                    var y = document.getElementById("joydeep").innerHTML;
+                    var correct = Math.pow(+x, +y);  
+                    if (ans == correct) {
+                        if(attemptsRemaining > 0) {
+                            document.getElementById("check").innerHTML = getGood();
+                        }
+                    }
+                    else{
+                        ifWrong(correct)
+                    }
+                }
+ 
+                function getGood() {
+                    var i = Math.floor( Math.random() * arrGood.length );
+                    return arrGood[i];
+                }
+ 
+                function getBad() {
+                    var i = Math.floor( Math.random() * arrBad.length );
+                    return arrBad[i];
+                }
+ 
+				function checkEnter(e) {
+	                if(e.keyCode == 13) {
+	                    checkAns();
+	                }
+	            }
+ 
+                function ifWrong(answer) {
+                    attemptsRemaining--;
+ 
+                    if(attemptsRemaining > 0) {
+                        document.getElementById("check").innerHTML = getBad() + " You have " + attemptsRemaining +
+                        " attempts remaining";
+                    }
+                    else {
+                        document.getElementById("check").innerHTML = "You're out of attempts. The answer was " +
+                        answer + ". Please try another question!";
+                    }
+                }
+ 
+            </script>
+ 
+        	</div>
+  				<footer id="footer">@2019 Laurence and Joydeep and Emily's site</footer>
+ 			</div>
+ 
+        </body>
+</html>
